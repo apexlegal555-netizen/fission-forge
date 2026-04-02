@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { fadeIn, stagger } from "@/lib/animations";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const testimonials = [
@@ -38,16 +40,16 @@ const TestimonialsSection = () => {
 
   return (
     <section className="py-20 bg-background">
-      <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4">
+      <motion.div className="container mx-auto" variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+        <motion.h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4" variants={fadeIn}>
           What Our Clients Say
-        </h2>
-        <p className="text-center text-muted-foreground mb-12">
+        </motion.h2>
+        <motion.p className="text-center text-muted-foreground mb-12" variants={fadeIn}>
           Hear from leaders who transformed their business with our solutions
-        </p>
+        </motion.p>
 
-        <div className="max-w-3xl mx-auto relative">
-          <div className="bg-secondary/50 rounded-2xl p-8 md:p-12 relative">
+        <motion.div className="max-w-3xl mx-auto relative" variants={fadeIn}>
+          <motion.div className="bg-secondary/50 rounded-2xl p-8 md:p-12 relative" variants={fadeIn}>
             <Quote className="w-10 h-10 text-primary/20 absolute top-6 left-6" />
             <p className="text-lg text-foreground leading-relaxed mb-8 mt-4">
               "{t.text}"
@@ -63,8 +65,8 @@ const TestimonialsSection = () => {
                 </p>
               </div>
             </div>
-          </div>
-          <div className="flex items-center justify-center gap-4 mt-8">
+          </motion.div>
+          <motion.div className="flex items-center justify-center gap-4 mt-8" variants={fadeIn}>
             <button
               onClick={prev}
               className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
@@ -88,9 +90,9 @@ const TestimonialsSection = () => {
             >
               <ChevronRight className="w-5 h-5" />
             </button>
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

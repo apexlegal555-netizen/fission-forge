@@ -1,4 +1,6 @@
 import { Brain, Sparkles, Server } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeIn, stagger } from "@/lib/animations";
 
 const capabilities = [
   {
@@ -37,8 +39,8 @@ const CapabilitiesSection = () => {
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto">
-        <div className="grid lg:grid-cols-4 gap-8">
-          <div className="lg:col-span-1">
+        <motion.div className="grid lg:grid-cols-4 gap-8" variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+          <motion.div className="lg:col-span-1" variants={fadeIn}>
             <div className="bg-section-dark text-section-dark-foreground rounded-2xl p-8 h-full flex flex-col justify-between min-h-[280px]">
               <div>
                 <h2 className="text-3xl font-bold mb-4">Our Core AI Capabilities</h2>
@@ -50,11 +52,12 @@ const CapabilitiesSection = () => {
                 Learn More →
               </a>
             </div>
-          </div>
+          </motion.div>
           {capabilities.map((cap) => (
-            <div
+            <motion.div
               key={cap.number}
               className="border border-border rounded-2xl p-8 hover:shadow-lg transition-shadow group"
+              variants={fadeIn}
             >
               <div className="flex items-start justify-between mb-6">
                 <div className="w-12 h-12 rounded-xl bg-orange-light flex items-center justify-center">
@@ -71,9 +74,9 @@ const CapabilitiesSection = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

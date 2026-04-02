@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { fadeIn, stagger } from "@/lib/animations";
 import { Database, Cloud, Smartphone, ShieldCheck, Workflow, Settings, ChevronDown } from "lucide-react";
 import servicesImage from "@/assets/services-image.jpg";
 
@@ -23,8 +25,8 @@ const ServicesSection = () => {
         <p className="text-muted-foreground mb-12 max-w-2xl">
           We help businesses solve technology challenges beyond AI by delivering services that improve efficiency, reliability, and outcomes.
         </p>
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <div className="hidden lg:block rounded-2xl overflow-hidden">
+        <motion.div className="grid lg:grid-cols-2 gap-12 items-start" variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+          <motion.div className="hidden lg:block rounded-2xl overflow-hidden" variants={fadeIn}>
             <img
               src={servicesImage}
               alt="Technology Services"
@@ -33,12 +35,13 @@ const ServicesSection = () => {
               loading="lazy"
               className="w-full h-[500px] object-cover rounded-2xl"
             />
-          </div>
-          <div className="space-y-3">
+          </motion.div>
+          <motion.div className="space-y-3" variants={fadeIn}>
             {services.map((service, i) => (
-              <div
+              <motion.div
                 key={i}
                 className="border border-border rounded-xl overflow-hidden"
+                variants={fadeIn}
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -71,10 +74,10 @@ const ServicesSection = () => {
                     </a>
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

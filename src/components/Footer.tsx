@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div>
             <a href="#" className="text-2xl font-bold tracking-tight">
-              FISSION<span className="text-primary">LABS</span>
+              ValuStrat
             </a>
             <p className="mt-4 text-sm text-section-dark-foreground/60">
               Leaders in Applied AI Engineering. Building dependable AI solutions for real-world environments.
@@ -47,7 +47,7 @@ const Footer = () => {
         </div>
         <div className="border-t border-section-dark-foreground/10 pt-8 text-center">
           <p className="text-xs text-section-dark-foreground/40">
-            © 2025 Fission Labs. All rights reserved.
+            © 2025 ValuStrat. All rights reserved.
           </p>
         </div>
       </div>

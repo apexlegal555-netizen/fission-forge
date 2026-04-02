@@ -1,19 +1,36 @@
+
 import heroImage from "@/assets/hero-image.jpg";
+import { motion } from "framer-motion";
+import { fadeIn, stagger } from "@/lib/animations";
 
 const HeroSection = () => {
   return (
     <section className="relative pt-32 pb-20 overflow-hidden bg-hero-bg">
-      {/* Decorative wave */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 opacity-10">
+      {/* Decorative wave with animated gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 opacity-20">
         <svg viewBox="0 0 1440 320" className="w-full h-full" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="hsl(var(--primary))" />
+              <stop offset="50%" stopColor="hsl(var(--accent))" />
+              <stop offset="100%" stopColor="hsl(var(--section-dark))" />
+            </linearGradient>
+          </defs>
           <path
-            fill="hsl(var(--primary))"
+            fill="url(#waveGradient)"
+            className="animate-wave"
             d="M0,160L48,170.7C96,181,192,203,288,192C384,181,480,139,576,138.7C672,139,768,181,864,197.3C960,213,1056,203,1152,181.3C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
           />
         </svg>
       </div>
-      <div className="container mx-auto grid lg:grid-cols-2 gap-12 items-center">
-        <div className="space-y-6">
+      <motion.div
+        className="container mx-auto grid lg:grid-cols-2 gap-12 items-center"
+        variants={stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <motion.div className="space-y-6" variants={fadeIn}>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground">
             We Are the Leaders in Applied{" "}
             <span className="text-primary">AI Engineering</span>
@@ -29,22 +46,27 @@ const HeroSection = () => {
           >
             BUILD YOUR NEXT SOLUTION WITH US
           </a>
-        </div>
-        <div className="relative flex justify-center">
+        </motion.div>
+        <motion.div className="relative flex justify-center" variants={fadeIn}>
           <div className="relative w-80 h-80 md:w-[420px] md:h-[420px]">
-            <div className="absolute inset-0 rounded-full border-2 border-primary/30 animate-[spin_20s_linear_infinite]" />
-            <div className="absolute inset-4 rounded-full overflow-hidden">
-              <img
-                src={heroImage}
-                alt="AI Engineering Professional"
+            {/* Rotating circular border - UI color scheme */}
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary via-accent to-section-dark animate-spin-slow opacity-80 blur-sm" />
+            <div className="absolute inset-[8px] rounded-full overflow-hidden bg-background">
+              <video
+                src="/2-4.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
                 width={800}
                 height={800}
                 className="w-full h-full object-cover"
+                poster={heroImage}
               />
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
