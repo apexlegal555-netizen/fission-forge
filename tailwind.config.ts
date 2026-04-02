@@ -12,8 +12,15 @@ export default {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      sans: ['Inter', 'sans-serif'],
+    },
     extend: {
       colors: {
+        'hero-bg': 'hsl(var(--hero-bg))',
+        'section-dark': 'hsl(var(--section-dark))',
+        'section-dark-foreground': 'hsl(var(--section-dark-foreground))',
+        'orange-light': 'hsl(var(--orange-light))',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
