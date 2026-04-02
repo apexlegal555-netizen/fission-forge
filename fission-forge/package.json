@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "predeploy": "npm run build --prefix ..",
-    "deploy": "gh-pages -d ../dist"
-  },
-  "dependencies": {
-    "gh-pages": "^6.3.0"
-  }
-}
